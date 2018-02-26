@@ -42,6 +42,9 @@ function addTask(e){
   // Append the link into li
   li.appendChild(link);
 
+  // Store in Local Storage
+  storeTaskInLocalStorage(taskInput.value);
+
   // Finally, append the li to the ul
   taskList.appendChild(li);
 
@@ -49,6 +52,21 @@ function addTask(e){
   taskInput.value = "";
 
   e.preventDefault();
+}
+
+// Store Task in Local Storage
+function storeTaskInLocalStorage(task){
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [ ];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
 }
 
 // Remove Task
