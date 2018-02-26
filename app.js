@@ -1,40 +1,18 @@
-// Event Bubbling
+// set local storage item
+localStorage.setItem('name', "John");
+localStorage.setItem('age', "30");
 
-// document.querySelector('.card-title').addEventListener('click', function(){
-//   console.log('card title');
-// });
+ 
+// set session storage
+sessionStorage.setItem('name', 'Beth');
 
-// document.querySelector('.card-content').addEventListener('click', function(){
-//   console.log('card content');
-// });
+// // remove from storage
+// localStorage.removeItem('name');
 
-// document.querySelector('.card').addEventListener('click', function(){
-//   console.log('card');
-// });
+// get from storage 
+const name = localStorage.getItem('name');
+const age = localStorage.getItem('age');
 
-// document.querySelector('.col').addEventListener('click', function(){
-//   console.log('col');
-// })
-
-// Event Delegation
-
-// const delItem = document.querySelector('.delete-item');
-
-// delItem.addEventListener('click', deleteItem);
-
-document.body.addEventListener('click', deleteItem)
-
-function deleteItem(e){
-  // console.log(e.target);
-  // if(e.target.className === 'fa fa-remove'){
-  //   console.log('delete item');
-  // }
-  // // This code will not work due to because there're so many classes in the parentElement
-  // if(e.target.parentElement.className === 'delete-item'){
-  //   console.log('delete item');
-  // }
-  if(e.target.parentElement.classList.contains('delete-item')){
-    console.log('delete item');
-    e.target.parentElement.parentElement.remove();
-  }
-}
+// clear the storage
+localStorage.clear();
+console.log(name, age);
