@@ -46,4 +46,16 @@ val = listItem.parentNode;
 val = listItem.parentElement;
 val = listItem.parentElement.parentElement;
 
+// Get next sibling 
+val = listItem.nextSibling;
+val = listItem.nextElementSibling;
+val = listItem.nextElementSibling.nextElementSibling;
+
+// Previous Sibling
+val = listItem.previousSibling;
+val = listItem.previousElementSibling;
+
+// We can do this
+val = listItem.nextElementSibling.nextElementSibling.previousElementSibling;
+
 console.log(val);
