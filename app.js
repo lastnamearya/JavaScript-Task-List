@@ -31,11 +31,20 @@ taskInput.value = ' ';
 // // Input Event, cut and paste events are sub-events of input they fall into the input category
 // taskInput.addEventListener('input', runEvent);
 
+// ****************************************************************************** // 
+
+// Select List
+const select = document.querySelector('select');
+
+// Change Event
+select.addEventListener('change', runEvent);
+
+// ****************************************************************************** // 
 
 function runEvent(e){
   console.log(`EVENT TYPE: ${e.type}`);
 
-  // console.log(e.target.value);
+  console.log(e.target.value);
 
   // heading.innerText = e.target.value;
 
