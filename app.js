@@ -1,55 +1,40 @@
-const form = document.querySelector('form');
-const taskInput = document.getElementById('task');
-const heading = document.querySelector('h5');
+// Event Bubbling
 
-// Clear Input
-taskInput.value = ' ';
+// document.querySelector('.card-title').addEventListener('click', function(){
+//   console.log('card title');
+// });
 
-// // form.addEventListener('submit', runEvent);
+// document.querySelector('.card-content').addEventListener('click', function(){
+//   console.log('card content');
+// });
 
-// // Keydown event
-// taskInput.addEventListener('keydown', runEvent);
+// document.querySelector('.card').addEventListener('click', function(){
+//   console.log('card');
+// });
 
-// // Keyup event
-// taskInput.addEventListener('keyup', runEvent);
+// document.querySelector('.col').addEventListener('click', function(){
+//   console.log('col');
+// })
 
-// // Keypress event
-// taskInput.addEventListener('keypress', runEvent);
+// Event Delegation
 
-// // Focus
-// taskInput.addEventListener('focus', runEvent);
+// const delItem = document.querySelector('.delete-item');
 
-// // Blur
-// taskInput.addEventListener('blur', runEvent);
+// delItem.addEventListener('click', deleteItem);
 
-// // Cut
-// taskInput.addEventListener('cut', runEvent);
+document.body.addEventListener('click', deleteItem)
 
-// // Paste
-// taskInput.addEventListener('paste', runEvent);
-
-// // Input Event, cut and paste events are sub-events of input they fall into the input category
-// taskInput.addEventListener('input', runEvent);
-
-// ****************************************************************************** // 
-
-// Select List
-const select = document.querySelector('select');
-
-// Change Event
-select.addEventListener('change', runEvent);
-
-// ****************************************************************************** // 
-
-function runEvent(e){
-  console.log(`EVENT TYPE: ${e.type}`);
-
-  console.log(e.target.value);
-
-  // heading.innerText = e.target.value;
-
-  // // Get Input Value
-  // console.log(taskInput.value);
-
-  // e.preventDefault();
+function deleteItem(e){
+  // console.log(e.target);
+  // if(e.target.className === 'fa fa-remove'){
+  //   console.log('delete item');
+  // }
+  // // This code will not work due to because there're so many classes in the parentElement
+  // if(e.target.parentElement.className === 'delete-item'){
+  //   console.log('delete item');
+  // }
+  if(e.target.parentElement.classList.contains('delete-item')){
+    console.log('delete item');
+    e.target.parentElement.parentElement.remove();
+  }
 }
