@@ -20,5 +20,28 @@ function addTask(e){
     alert("Add a task");
   }
 
+  // Create li element
+  const li = document.createElement('li');
+  // Add class, for materialize css it's necassary that li elements have a sub class of ul i.e collection now here, it's collection-item
+  li.className = "collection-item"; 
+  // Create Text node and append to li
+  li.appendChild(document.createTextNode(taskInput.value));
+
+  // create new link element for X Delete Sign
+  const link = document.createElement('a');
+  // Add Class
+  link.className = 'delete-item secondary-content';
+  // Add icon html
+  link.innerHTML = '<i class="fa fa-remove"></i>';
+  // Append the link into li
+  li.appendChild(link);
+
+  // Finally, append the li to the ul
+  taskList.appendChild(li);
+
+  // Once we do that, let's clear the input
+  taskInput.value = "";
+
+
   e.preventDefault();
 }
