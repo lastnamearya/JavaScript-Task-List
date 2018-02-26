@@ -10,6 +10,8 @@ loadEventListeners();
 
 // Load all event listeners
 function loadEventListeners() {
+  // DOM Load Event
+  document.addEventListener('DOMContentLoaded', getTasks);
   // Add task Event
   form.addEventListener('submit', addTask);
   // Remove task Event
@@ -19,6 +21,34 @@ function loadEventListeners() {
   // Filter Tasks events
   filter.addEventListener('keyup', filterTasks);
 }
+
+// Get Tasks from LS
+function getTasks(){
+  let tasks;
+    if(localStorage.getItem('tasks') === null){
+      tasks = [];
+    } else {
+      tasks = JSON.parse(localStorage.getItem('tasks'));
+    } 
+
+    tasks.forEach(function(task){
+      const li = document.createElement('li');
+      li.className = "collection-item"; 
+      li.appendChild(document.createTextNode(task));
+
+      // create new link element for X Delete Sign
+      const link = document.createElement('a');
+      // Add Class
+      link.className = 'delete-item secondary-content';
+      // Add icon html
+      link.innerHTML = '<i class="fa fa-remove"></i>';
+      // Append the link into li
+      li.appendChild(link);
+      // Finally, append the li to the ul
+      taskList.appendChild(li);
+    });
+}
+
 
 // Add Task
 function addTask(e){
@@ -76,8 +106,30 @@ function removeTask(e){
     // console.log(e.target);
     if(confirm('Are you Sure?')){
       e.target.parentElement.parentElement.remove();
+
+      // Remove from LocalStorage
+      removeTaskFromLocalStorage(e.target.parentElement.parentElement);
     }
   }
+}
+
+// Remove Tasks from Local Storage
+function removeTaskFromLocalStorage(taskItem){
+  // console.log(taskItem);
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [ ];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function(task, index){
+    if(taskItem.textContent  === task){
+      tasks.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Clear Task
@@ -89,7 +141,16 @@ function clearTasks() {
   while(taskList.firstChild){
     taskList.removeChild(taskList.firstChild);
   }
+
+  // Clear from Local Storage
+  clearTasksFromLocalStorage();
 }
+
+// Clear Tasks from Local Storage
+function clearTasksFromLocalStorage() {
+  localStorage.clear();
+}
+
 
 // Filter Tasks
 function filterTasks(e) {
