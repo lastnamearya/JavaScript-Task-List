@@ -1,41 +1,39 @@
-// document.querySelector('.clear-tasks').addEventListener('click', (e) => {
-//   console.log('Hello World');
+const clearBtn = document.querySelector('.clear-tasks');
+const card = document.querySelector('.card');
+const heading = document.querySelector('h5');
 
-//   e.preventDefault();
-// });
+// // Click
+// clearBtn.addEventListener('click', runEvent);
 
-document.querySelector('.clear-tasks').addEventListener('click', onClick);
+// // Doubleclick
+// clearBtn.addEventListener('dblclick', runEvent);
 
-function onClick(e){
-  //  console.log('Clicked');
+// // Mousedown
+// clearBtn.addEventListener('mousedown', runEvent);
 
-  let val;
+// // Mouseup
+// clearBtn.addEventListener('mouseup', runEvent);
 
-  val = e;
+// // Mouseenter
+// card.addEventListener('mouseenter', runEvent);
 
-  // It will log where we clicked, our click accurate location on the screen, target where we clicked in our document and everything else about the event happened.
+// // Mouseleave
+// card.addEventListener('mouseleave', runEvent);
 
-  val = e.target;
-  // There's no id by default so we'll get a blank value 
-  val = e.target.id;
-  val = e.target.className;
-  val = e.target.classList;
+// // Mouseover
+// card.addEventListener('mouseover', runEvent);
 
-  e.target.innerText = "Hello";
+// // Mouseout
+// card.addEventListener('mouseout', runEvent);
 
-  // Event Type, we can change event type from click to mouseover while adding Event Listener
-  val = e.type;
+// Mousemove
+card.addEventListener('mousemove', runEvent);
 
-  // Timestamp
-  val = e.timeStamp;
+// Event Handler
+function runEvent(e) {
+  console.log(`EVENT TYPE: ${e.type}`);
 
-  // Coords event relative to the window
-  val = e.clientY;
-  val = e.clientX;
+  heading.textContent = `MouseX: ${e.offsetX} MouseY: ${e.offsetY}`;
 
-  // Coords event relative to the element
-  val = e.offsetY;
-  val = e.offsetX;
-
-  console.log(val);
+  document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`;
 }
